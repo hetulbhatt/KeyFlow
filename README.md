@@ -9,7 +9,6 @@ Features
 
 Getting Started
 To get started with KeyMapper, follow these steps:
-
 - Clone the KeyMapper repository to your local machine running Windows.
 - Build the project using g++ main.cpp.
 - Run the executable file to launch the KeyMapper application. Ensure that the config files (../config/codes.config and ../config/shortcuts.config) are present at the appropriate locations.
@@ -23,15 +22,15 @@ To get started with KeyMapper, follow these steps:
   - Each operation should not span more than one line.
   - You can add comments to the file, but they should be on separate lines.
   
-  ```
-  # This is a comment.
-  # The following string will be flushed to the active window at the cursor position 
-  # when the user presses LEFT CONTROL + LEFT ALT + A.
-  LCONTROL+LMENU+A :PRINT this entire string!
+    ```
+    # This is a comment.
+    # The following string will be flushed to the active window at the cursor position 
+    # when the user presses LEFT CONTROL + LEFT ALT + A.
+    LCONTROL+LMENU+A :PRINT this entire string!
 
-  # The following program will be launched when the user presses LEFT ALT + A.
-  LMENU+A $C:\Program Files\Sublime Text 3\sublime_text.exe
-  ```
+    # The following program will be launched when the user presses LEFT ALT + A.
+    LMENU+A $C:\Program Files\Sublime Text 3\sublime_text.exe
+    ```
   
 
 - codes.config:
@@ -54,4 +53,4 @@ To get started with KeyMapper, follow these steps:
   ```
   
 Contributing
-We welcome contributions from the open-source community to enhance KeyFlow's functionality and user experience.
+- We welcome contributions from the open-source community to enhance KeyFlow's functionality and user experience.
