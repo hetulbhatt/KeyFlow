@@ -1,11 +1,14 @@
 #include "../include/keyflow/keyhook.h"
 
-int main() {
+int main(int argc, char* argv[]) {
     std::cout << "OK!" << std::endl;
     KeyHook& keyHook = KeyHookSingleton::getInstance();
     FileLoader& fileLoader = keyHook.getKeystrokeHandler().getFileLoader();
-    fileLoader.load_codes();
-    fileLoader.load_shortcuts();
+    if (argc == 3) {
+        fileLoader.loadFromFiles(argv[1], argv[2]);
+    } else {
+        fileLoader.loadFromFiles();
+    }
     keyHook.getKeystrokeHandler().resizeBuffer(fileLoader.getCodeLength());
     keyHook.setup_hook();
 
