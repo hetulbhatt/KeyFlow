@@ -46,9 +46,19 @@ public:
         return code_length;
     }
 
-    int load_shortcuts()
+    void loadFromFiles() {
+        load_shortcuts("../config/shortcuts.config");
+        load_codes("../config/codes.config");
+    }
+
+    void loadFromFiles(const std::string& shortcutsFile, const std::string& codesFile) {
+        load_shortcuts(shortcutsFile);
+        load_codes(codesFile);
+    }
+
+    int load_shortcuts(const std::string& filePath)
     {
-        std::ifstream file("../config/shortcuts.config");
+        std::ifstream file(filePath);
         std::string line;
 
         while (std::getline(file, line))
@@ -120,9 +130,9 @@ public:
         return 0;
     }
 
-    int load_codes()
+    int load_codes(const std::string& filePath)
     {
-        std::ifstream file("../config/codes.config");
+        std::ifstream file(filePath);
         std::string line;
 
         while (std::getline(file, line))
