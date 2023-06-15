@@ -1,28 +1,25 @@
-name: Build
+name: Build C++ Project
 
 on:
   push:
     branches:
       - main
-      # Add more branches as needed
   pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Set up C++ environment
-      uses: actions/setup-cxx@v2
-      with:
-        cxx-version: '17' # Specify the desired C++ version
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Check out code
-      uses: actions/checkout@v2
+      - name: Set up C++ compiler
+        uses: actions/setup-cxx@v1
+        with:
+          cxx-version: '17' # Adjust the C++ version as per your project's requirements
 
-    - name: Build
-      run: |
-        mkdir build
-        cd build
-        cmake ..
-        make
+      - name: Build
+        run: g++ -std=c++17 -I./include -o main src/main.cpp
