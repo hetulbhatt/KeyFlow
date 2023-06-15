@@ -18,3 +18,9 @@ jobs:
 
       - name: Build
         run: g++ -std=c++17 -I./include -o main src/main.cpp
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: main-executable
+          path: main.exe
