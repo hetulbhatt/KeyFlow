@@ -41,16 +41,16 @@ To get started with KeyMapper, follow these steps:
   - If the operator is :, the string to the right will be flushed to the active window.
   - Each operation should not span more than one line.
   - You can add comments to the file, but they should be on separate lines.
-  ```
-  # All over cheat codes will be of length 5.
-  CODE LENGTH = 5
-  # Typing hello, regardless of the status of caps lock, 
-  # will print WORLD on the active window
-  HELLO :WORLD
-  APPLE :Stay away, Doc!
-  # Typing GTAV5 will launch GTA5.exe, if present.
-  GTAV5 $C:\Games\Grand Theft Auto V\GTA5.exe
-  ```
+    ```
+    # All over cheat codes will be of length 5.
+    CODE LENGTH = 5
+    # Typing hello, regardless of the status of caps lock, 
+    # will print WORLD on the active window
+    HELLO :WORLD
+    APPLE :Stay away, Doc!
+    # Typing GTAV5 will launch GTA5.exe, if present.
+    GTAV5 $C:\Games\Grand Theft Auto V\GTA5.exe
+    ```
   
 Contributing
 - We welcome contributions from the open-source community to enhance KeyFlow's functionality and user experience.
