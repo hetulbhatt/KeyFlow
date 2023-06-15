@@ -16,10 +16,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up C++ compiler
-        uses: actions/setup-cxx@v1
-        with:
-          cxx-version: '17' # Adjust the C++ version as per your project's requirements
+      - name: Install g++
+        run: sudo apt-get install g++
 
       - name: Build
         run: g++ -std=c++17 -I./include -o main src/main.cpp
