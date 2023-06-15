@@ -16,7 +16,6 @@ public:
         std::cout << "Helper()\n";
     }
 
-
     static std::string trim(const std::string &str)
     {
         size_t first = str.find_first_not_of(' ');
@@ -249,8 +248,7 @@ public:
             {"ZOOM", 251},
             {"NONAME", 252},
             {"PA1", 253},
-            {"OEM_CLEAR", 254}
-        };
+            {"OEM_CLEAR", 254}};
     }
 };
 

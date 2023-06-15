@@ -18,7 +18,6 @@ private:
     std::unordered_map<std::string, int> key_to_vkcode;
 
 public:
-    
     KeystrokeHandler()
     {
         this->sequence = 0;
@@ -26,31 +25,35 @@ public:
         printf("KeystrokeHandler() %d \n", loader.getCodeLength());
     }
 
-    FileLoader& getFileLoader() {
+    FileLoader &getFileLoader()
+    {
         return this->loader;
     }
 
-    void resizeBuffer(int size) {
+    void resizeBuffer(int size)
+    {
         this->buffer.resize(size);
     }
 
-    void execute_shortcut() {
+    void execute_shortcut()
+    {
         this->execute_shortcut(PASTE_EVENT);
         this->execute_shortcut(EXECUTE_EVENT);
     }
 
     void execute_shortcut(int event_type)
     {
-        std::vector<std::pair<std::vector<int>, std::string>>& shortcuts = 
+        std::vector<std::pair<std::vector<int>, std::string>> &shortcuts =
             event_type == PASTE_EVENT ? loader.getColonShortcuts() : loader.getDollarShortcuts();
-        
+
         for (const auto &entry : shortcuts)
         {
             std::vector<int> list = entry.first;
             for (int i = 0; i < list.size(); i++)
             {
                 int key = list[i];
-                std::cout << std::endl << key << " " << logs[key] << " " << i + 1;
+                std::cout << std::endl
+                          << key << " " << logs[key] << " " << i + 1;
                 if (logs[key] != i + 1)
                 {
                     break;
@@ -62,9 +65,12 @@ public:
                         logs[list[j]] = 0;
                         sequence--;
                     }
-                    if (event_type == PASTE_EVENT) {
+                    if (event_type == PASTE_EVENT)
+                    {
                         action_performer.simulate_paste(entry.second);
-                    } else if (event_type == EXECUTE_EVENT) {
+                    }
+                    else if (event_type == EXECUTE_EVENT)
+                    {
                         action_performer.execute_program(entry.second);
                     }
                 }
@@ -72,7 +78,8 @@ public:
         }
     }
 
-    void execute_code(char c) {
+    void execute_code(char c)
+    {
         int codeLength = loader.getCodeLength();
         buffer[buffer_index] = c;
         buffer_index = (buffer_index + 1) % codeLength;
@@ -89,14 +96,17 @@ public:
 
     void execute_code(int event_type, std::string key)
     {
-        std::unordered_map<std::string, std::string>& codes = 
+        std::unordered_map<std::string, std::string> &codes =
             event_type == PASTE_EVENT ? loader.getColonCodes() : loader.getDollarCodes();
         if (codes.find(key) != codes.end())
         {
             std::cout << key << std::endl;
-            if (event_type == PASTE_EVENT) {
+            if (event_type == PASTE_EVENT)
+            {
                 action_performer.simulate_paste(codes[key]);
-            } else if (event_type == EXECUTE_EVENT) {
+            }
+            else if (event_type == EXECUTE_EVENT)
+            {
                 action_performer.execute_program(codes[key]);
             }
         }
@@ -112,7 +122,7 @@ public:
             {
                 std::cout << vk_code << std::endl;
                 sequence++;
-                logs[(int)vk_code] = sequence; 
+                logs[(int)vk_code] = sequence;
                 this->execute_shortcut();
             }
         }

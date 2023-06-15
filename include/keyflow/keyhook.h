@@ -8,7 +8,8 @@ private:
     KeystrokeHandler keystroke_handler;
 
 public:
-    KeystrokeHandler& getKeystrokeHandler() {
+    KeystrokeHandler &getKeystrokeHandler()
+    {
         return this->keystroke_handler;
     }
 
@@ -53,29 +54,31 @@ public:
     }
 };
 
-
-class KeyHookSingleton {
+class KeyHookSingleton
+{
 private:
-    KeyHook* hook = nullptr;
+    KeyHook *hook = nullptr;
 
-    KeyHookSingleton() {
+    KeyHookSingleton()
+    {
         hook = new KeyHook();
     }
 
 public:
-    static KeyHook& getInstance() {
+    static KeyHook &getInstance()
+    {
         static KeyHookSingleton instance;
         return *(instance.hook);
     }
 
-    KeyHookSingleton(const KeyHookSingleton&) = delete;
-    KeyHookSingleton& operator=(const KeyHookSingleton&) = delete;
+    KeyHookSingleton(const KeyHookSingleton &) = delete;
+    KeyHookSingleton &operator=(const KeyHookSingleton &) = delete;
 
-    ~KeyHookSingleton() {
+    ~KeyHookSingleton()
+    {
         delete hook;
     }
 };
-
 
 LRESULT CALLBACK keyboard_hook_proc(int nCode, WPARAM wParam, LPARAM lParam)
 {

@@ -16,38 +16,45 @@ private:
     int code_length = DEFAULT_CODE_LENGTH;
 
 public:
-    FileLoader() {
+    FileLoader()
+    {
         std::cout << "FileLoader()\n";
     }
 
-    std::vector<std::pair<std::vector<int>, std::string>>& getDollarShortcuts() {
+    std::vector<std::pair<std::vector<int>, std::string>> &getDollarShortcuts()
+    {
         return this->dollar_shortcuts;
     }
 
-    std::vector<std::pair<std::vector<int>, std::string>>& getColonShortcuts() {
+    std::vector<std::pair<std::vector<int>, std::string>> &getColonShortcuts()
+    {
         return this->colon_shortcuts;
     }
 
-    std::unordered_map<std::string, std::string>& getDollarCodes() {
+    std::unordered_map<std::string, std::string> &getDollarCodes()
+    {
         return this->dollar_codes;
     }
 
-    std::unordered_map<std::string, std::string>& getColonCodes() {
+    std::unordered_map<std::string, std::string> &getColonCodes()
+    {
         return this->colon_codes;
     }
 
-    int getCodeLength() {
+    int getCodeLength()
+    {
         return code_length;
     }
 
     int load_shortcuts()
     {
-        std::ifstream file("../config/shortcuts.config"); 
+        std::ifstream file("../config/shortcuts.config");
         std::string line;
 
         while (std::getline(file, line))
         {
-            if (line.empty() || line[0] == '#') {
+            if (line.empty() || line[0] == '#')
+            {
                 continue;
             }
 
@@ -115,12 +122,12 @@ public:
 
     int load_codes()
     {
-        std::ifstream file("../config/codes.config"); 
+        std::ifstream file("../config/codes.config");
         std::string line;
 
         while (std::getline(file, line))
         {
-            if (line.empty() || line[0] == '#') 
+            if (line.empty() || line[0] == '#')
                 continue;
 
             if (helper.starts_with(line, "CODE LENGTH"))
