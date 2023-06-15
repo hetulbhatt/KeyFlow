@@ -10,14 +10,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Install g++
-        run: sudo apt-get install g++
 
       - name: Build
         run: g++ -std=c++17 -I./include -o main src/main.cpp
