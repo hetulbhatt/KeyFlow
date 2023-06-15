@@ -6,7 +6,8 @@
 class ActionPerformer
 {
 public:
-    ActionPerformer() {
+    ActionPerformer()
+    {
         std::cout << "ActionPerformer()\n";
     }
 
@@ -20,7 +21,6 @@ public:
 
         // Set up the datastructure
         INPUT *inputs = new INPUT[stringToPaste.length() * 2];
-        // ZeroMemory(inputs, stringToPaste.length() * 2 * sizeof(INPUT));
         memset(inputs, 0, stringToPaste.length() * 2 * sizeof(INPUT));
 
         for (size_t i = 0; i < stringToPaste.length(); i++)
