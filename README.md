@@ -41,6 +41,7 @@ To get started with KeyMapper, follow these steps:
   - If the operator is :, the string to the right will be flushed to the active window.
   - Each operation should not span more than one line.
   - You can add comments to the file, but they should be on separate lines.
+    
     ```
     # All over cheat codes will be of length 5.
     CODE LENGTH = 5
