@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        architecture:
+          - x86
+          - x64
+          - ARM
+          - ARM64
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up environment
+        run: echo "Running on Windows - ${{ matrix.architecture }}"
+
+      - name: Build
+        run: g++ -static -std=c++17 -I./include -o KeyFlow-${{ matrix.architecture }}.exe src/main.cpp
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: KeyFlow-windows-${{ matrix.architecture }}-executable
+          path: KeyFlow-${{ matrix.architecture }}.exe
