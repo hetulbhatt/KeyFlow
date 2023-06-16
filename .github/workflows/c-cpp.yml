@@ -1,50 +1,15 @@
-# # # # # # name: Build C++ Project
-
-# # # # # # on:
-# # # # # #   push:
-# # # # # #     branches:
-# # # # # #       - main
-# # # # # #   pull_request:
-# # # # # #     branches:
-# # # # # #       - main
-
-# # # # # # jobs:
-# # # # # #   build:
-# # # # # #     runs-on: windows-latest
-
-# # # # # #     strategy:
-# # # # # #       matrix:
-# # # # # #         architecture:
-# # # # # #           - x86
-# # # # # #           - x64
-# # # # # #           - ARM
-# # # # # #           - ARM64
-
-# # # # # #     steps:
-# # # # # #       - name: Checkout code
-# # # # # #         uses: actions/checkout@v2
-
-# # # # # #       - name: Set up environment
-# # # # # #         run: echo "Running on Windows - ${{ matrix.architecture }}"
-
-# # # # # #       - name: Build
-# # # # # #         run: g++ -static -std=c++17 -I./include -o main.exe src/main.cpp
-
-# # # # # #       - name: Upload artifact
-# # # # # #         uses: actions/upload-artifact@v2
-# # # # # #         with:
-# # # # # #           name: windows-${{ matrix.architecture }}-executable
-# # # # # #           path: main.exe
-
-# # # # # name: Create Release
+# # # # # name: Build C++ Project
 
 # # # # # on:
 # # # # #   push:
 # # # # #     branches:
 # # # # #       - main
+# # # # #   pull_request:
+# # # # #     branches:
+# # # # #       - main
 
 # # # # # jobs:
-# # # # #   create_release:
+# # # # #   build:
 # # # # #     runs-on: windows-latest
 
 # # # # #     strategy:
@@ -70,24 +35,6 @@
 # # # # #         with:
 # # # # #           name: windows-${{ matrix.architecture }}-executable
 # # # # #           path: main.exe
-
-# # # # #       - name: Determine Alpha Version
-# # # # #         id: determine_alpha_version
-# # # # #         run: |
-# # # # #           echo "::set-output name=ALPHA_VERSION::alpha.$(date +%Y%m%d).${{ github.run_number }}"
-
-# # # # #       - name: Create Release
-# # # # #         id: create_release
-# # # # #         uses: actions/create-release@v1
-# # # # #         env:
-# # # # #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-# # # # #         with:
-# # # # #           tag_name: ${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
-# # # # #           release_name: Release ${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
-# # # # #           body: |
-# # # # #             This is an alpha release for version ${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
-# # # # #           draft: false
-# # # # #           prerelease: false
 
 # # # # name: Create Release
 
@@ -118,14 +65,16 @@
 # # # #       - name: Build
 # # # #         run: g++ -static -std=c++17 -I./include -o main.exe src/main.cpp
 
+# # # #       - name: Upload artifact
+# # # #         uses: actions/upload-artifact@v2
+# # # #         with:
+# # # #           name: windows-${{ matrix.architecture }}-executable
+# # # #           path: main.exe
+
 # # # #       - name: Determine Alpha Version
 # # # #         id: determine_alpha_version
 # # # #         run: |
 # # # #           echo "::set-output name=ALPHA_VERSION::alpha.$(date +%Y%m%d).${{ github.run_number }}"
-
-# # # #       - name: Rename Artifact
-# # # #         run: |
-# # # #           mv main.exe KeyFlow-${{ matrix.architecture }}.exe
 
 # # # #       - name: Create Release
 # # # #         id: create_release
@@ -139,8 +88,6 @@
 # # # #             This is an alpha release for version ${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
 # # # #           draft: false
 # # # #           prerelease: false
-# # # #           asset_paths: |
-# # # #             main-${{ matrix.architecture }}.exe
 
 # # # name: Create Release
 
@@ -150,7 +97,7 @@
 # # #       - main
 
 # # # jobs:
-# # #   build:
+# # #   create_release:
 # # #     runs-on: windows-latest
 
 # # #     strategy:
@@ -169,23 +116,16 @@
 # # #         run: echo "Running on Windows - ${{ matrix.architecture }}"
 
 # # #       - name: Build
-# # #         run: g++ -static -std=c++17 -I./include -o KeyFlow-${{ matrix.architecture }}.exe src/main.cpp
+# # #         run: g++ -static -std=c++17 -I./include -o main.exe src/main.cpp
 
-# # #       - name: Upload artifact
-# # #         uses: actions/upload-artifact@v2
-# # #         with:
-# # #           name: KeyFlow-windows-${{ matrix.architecture }}-executable
-# # #           path: KeyFlow-${{ matrix.architecture }}.exe
-
-# # #   create_release:
-# # #     needs: build
-# # #     runs-on: windows-latest
-
-# # #     steps:
 # # #       - name: Determine Alpha Version
 # # #         id: determine_alpha_version
 # # #         run: |
 # # #           echo "::set-output name=ALPHA_VERSION::alpha.$(date +%Y%m%d).${{ github.run_number }}"
+
+# # #       - name: Rename Artifact
+# # #         run: |
+# # #           mv main.exe KeyFlow-${{ matrix.architecture }}.exe
 
 # # #       - name: Create Release
 # # #         id: create_release
@@ -193,14 +133,14 @@
 # # #         env:
 # # #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 # # #         with:
-# # #           tag_name: ${{ matrix.architecture }}-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
-# # #           release_name: Release ${{ matrix.architecture }}-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
+# # #           tag_name: ${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
+# # #           release_name: Release ${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
 # # #           body: |
 # # #             This is an alpha release for version ${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
 # # #           draft: false
 # # #           prerelease: false
 # # #           asset_paths: |
-# # #             ${{ needs.build.outputs.artifact_paths }}
+# # #             main-${{ matrix.architecture }}.exe
 
 # # name: Create Release
 
@@ -228,32 +168,20 @@
 # #       - name: Set up environment
 # #         run: echo "Running on Windows - ${{ matrix.architecture }}"
 
-# #       - name: Create Architecture Directory
-# #         run: mkdir ${{ matrix.architecture }}
-
 # #       - name: Build
-# #         run: g++ -static -std=c++17 -I./include -o ${{ matrix.architecture }}/KeyFlow.exe src/main.cpp
+# #         run: g++ -static -std=c++17 -I./include -o KeyFlow-${{ matrix.architecture }}.exe src/main.cpp
 
 # #       - name: Upload artifact
 # #         uses: actions/upload-artifact@v2
 # #         with:
 # #           name: KeyFlow-windows-${{ matrix.architecture }}-executable
-# #           path: ${{ matrix.architecture }}/KeyFlow.exe
+# #           path: KeyFlow-${{ matrix.architecture }}.exe
 
 # #   create_release:
 # #     needs: build
 # #     runs-on: windows-latest
 
 # #     steps:
-# #       - name: Create Workspace
-# #         id: workspace
-# #         run: |
-# #           mkdir workspace
-# #           mv x86 workspace/
-# #           mv x64 workspace/
-# #           mv ARM workspace/
-# #           mv ARM64 workspace/
-
 # #       - name: Determine Alpha Version
 # #         id: determine_alpha_version
 # #         run: |
@@ -265,14 +193,14 @@
 # #         env:
 # #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 # #         with:
-# #           tag_name: tag1-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
+# #           tag_name: ${{ matrix.architecture }}-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
 # #           release_name: Release ${{ matrix.architecture }}-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
 # #           body: |
 # #             This is an alpha release for version ${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
 # #           draft: false
 # #           prerelease: false
 # #           asset_paths: |
-# #             workspace/*
+# #             ${{ needs.build.outputs.artifact_paths }}
 
 # name: Create Release
 
@@ -300,41 +228,31 @@
 #       - name: Set up environment
 #         run: echo "Running on Windows - ${{ matrix.architecture }}"
 
+#       - name: Create Architecture Directory
+#         run: mkdir ${{ matrix.architecture }}
+
 #       - name: Build
-#         run: g++ -static -std=c++17 -I./include -o KeyFlow-${{ matrix.architecture }}.exe src/main.cpp
+#         run: g++ -static -std=c++17 -I./include -o ${{ matrix.architecture }}/KeyFlow.exe src/main.cpp
 
 #       - name: Upload artifact
 #         uses: actions/upload-artifact@v2
 #         with:
 #           name: KeyFlow-windows-${{ matrix.architecture }}-executable
-#           path: KeyFlow-${{ matrix.architecture }}.exe
+#           path: ${{ matrix.architecture }}/KeyFlow.exe
 
 #   create_release:
 #     needs: build
 #     runs-on: windows-latest
 
 #     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
-
 #       - name: Create Workspace
-#         run: mkdir workspace
-
-#       # - name: Download Artifacts
-#       #   uses: actions/download-artifact@v2
-#       #   with:
-#       #     name: KeyFlow-windows-*
-#       #     path: workspace
-
-#       - name: Download Artifacts
-#         uses: actions/download-artifact@v2
-#         with:
-#           name: |
-#             KeyFlow-windows-x86-executable.zip
-#             KeyFlow-windows-x64-executable.zip
-#             KeyFlow-windows-ARM-executable.zip
-#             KeyFlow-windows-ARM64-executable.zip
-#           path: workspace
+#         id: workspace
+#         run: |
+#           mkdir workspace
+#           mv x86 workspace/
+#           mv x64 workspace/
+#           mv ARM workspace/
+#           mv ARM64 workspace/
 
 #       - name: Determine Alpha Version
 #         id: determine_alpha_version
@@ -347,7 +265,7 @@
 #         env:
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #         with:
-#           tag_name: ${{ matrix.architecture }}-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
+#           tag_name: tag1-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
 #           release_name: Release ${{ matrix.architecture }}-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
 #           body: |
 #             This is an alpha release for version ${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
@@ -396,36 +314,36 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      # - name: Checkout code
+      #   uses: actions/checkout@v2
 
       - name: Create Workspace
         run: mkdir workspace
 
-      - name: Get Artifact List
-        id: get_artifacts
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const response = await github.actions.listArtifactsForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-            });
-            const artifacts = response.data.artifacts;
-            core.setOutput('artifact_names', artifacts.map(a => a.name).join('\n'));
+      # - name: Download Artifacts
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: KeyFlow-windows-*
+      #     path: workspace
 
-      - name: Download Artifacts
-        run: |
-          IFS=$'\n'
-          for artifact in ${{ steps.get_artifacts.outputs.artifact_names }}
-          do
-            echo "Downloading artifact: $artifact"
-            actions/download-artifact@v2
-              with:
-                name: $artifact
-                path: workspace
-          done
+      # - name: Download Artifacts
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: |
+      #       KeyFlow-windows-x86-executable.zip
+      #       KeyFlow-windows-x64-executable.zip
+      #       KeyFlow-windows-ARM-executable.zip
+      #       KeyFlow-windows-ARM64-executable.zip
+      #     path: workspace
+
+      - uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v3
+        with:
+          path: workspace
+
+      - name: Display structure of downloaded files
+        run: ls -R
 
       - name: Determine Alpha Version
         id: determine_alpha_version
@@ -438,8 +356,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ matrix.architecture }}-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
-          release_name: Release ${{ matrix.architecture }}-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
+          tag_name: release-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
+          release_name: Release release-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
           body: |
             This is an alpha release for version ${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
           draft: false
