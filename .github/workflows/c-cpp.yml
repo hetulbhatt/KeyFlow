@@ -320,10 +320,20 @@ jobs:
       - name: Create Workspace
         run: mkdir workspace
 
+      # - name: Download Artifacts
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: KeyFlow-windows-*
+      #     path: workspace
+
       - name: Download Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: KeyFlow-windows-*
+          name: |
+            KeyFlow-windows-x86
+            KeyFlow-windows-x64
+            KeyFlow-windows-ARM
+            KeyFlow-windows-ARM64
           path: workspace
 
       - name: Determine Alpha Version
