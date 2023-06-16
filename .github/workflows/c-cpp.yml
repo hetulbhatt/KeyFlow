@@ -228,6 +228,9 @@ jobs:
       - name: Set up environment
         run: echo "Running on Windows - ${{ matrix.architecture }}"
 
+      - name: Create Architecture Directory
+        run: mkdir ${{ matrix.architecture }}
+
       - name: Build
         run: g++ -static -std=c++17 -I./include -o ${{ matrix.architecture }}/KeyFlow.exe src/main.cpp
 
