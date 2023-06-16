@@ -330,10 +330,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: |
-            KeyFlow-windows-x86-executable
-            KeyFlow-windows-x64-executable
-            KeyFlow-windows-ARM-executable
-            KeyFlow-windows-ARM64-executable
+            KeyFlow-windows-x86-executable.zip
+            KeyFlow-windows-x64-executable.zip
+            KeyFlow-windows-ARM-executable.zip
+            KeyFlow-windows-ARM64-executable.zip
           path: workspace
 
       - name: Determine Alpha Version
