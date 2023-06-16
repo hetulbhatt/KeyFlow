@@ -42,10 +42,10 @@ jobs:
         run: mkdir workspace
         
       - name: Checkout code
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Download Artifacts
-      - uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v3
         with:
           path: workspace
 
@@ -69,10 +69,8 @@ jobs:
             This is an alpha release for version ${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
           draft: false
           prerelease: false
-          # asset_paths: |
-          #   workspace/*
-      
-      - name: Upload Build
+
+      - name: Upload Build x86
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -82,7 +80,7 @@ jobs:
           asset_name: KeyFlow-x86.exe
           asset_content_type: application/octet-stream
 
-      - name: Upload Build
+      - name: Upload Build x64
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -92,7 +90,7 @@ jobs:
           asset_name: KeyFlow-x64.exe
           asset_content_type: application/octet-stream
 
-      - name: Upload Build
+      - name: Upload Build ARM
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -102,7 +100,7 @@ jobs:
           asset_name: KeyFlow-ARM.exe
           asset_content_type: application/octet-stream
 
-      - name: Upload Build
+      - name: Upload Build ARM64
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
