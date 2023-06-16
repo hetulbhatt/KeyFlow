@@ -193,8 +193,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ needs.build.outputs['build.matrix.architecture'] }}-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
-          release_name: Release ${{ needs.build.outputs['build.matrix.architecture'] }}-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
+          tag_name: ${{ matrix.architecture }}-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
+          release_name: Release ${{ matrix.architecture }}-${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
           body: |
             This is an alpha release for version ${{ steps.determine_alpha_version.outputs.ALPHA_VERSION }}
           draft: false
