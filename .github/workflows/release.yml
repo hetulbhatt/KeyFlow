@@ -5,6 +5,7 @@ on:
     branches:
       - main
 
+jobs:
   create_release:
     needs: build
     runs-on: windows-latest
