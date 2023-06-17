@@ -1,3 +1,6 @@
+#ifndef FILELOADER_H
+#define FILELOADER_H
+
 #include "helper.h"
 
 #include <fstream>
@@ -211,3 +214,5 @@ public:
         return 0;
     }
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef ACTION_PERFORMER_H
+#define ACTION_PERFORMER_H
+
 #include <windows.h>
 
 #include <string>
@@ -66,3 +69,5 @@ public:
         std::cout << "Process execution completed for: " << path << std::endl;
     }
 };
+
+#endif

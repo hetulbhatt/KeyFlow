@@ -1,3 +1,6 @@
+#ifndef KEYSTROKE_HANDLER_H
+#define KEYSTROKE_HANDLER_H
+
 #include "action_performer.h"
 #include "fileloader.h"
 
@@ -136,3 +139,5 @@ public:
         }
     }
 };
+
+#endif // KEYSTROKE_HANDLER_H
