@@ -13,7 +13,7 @@ public:
     Helper()
     {
         init_key_to_vkcode();
-        std::cout << "Helper()\n";
+        Logger::log("Helper()\n");
     }
 
     static std::string trim(const std::string &str)

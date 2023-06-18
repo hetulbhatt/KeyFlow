@@ -21,7 +21,7 @@ private:
 public:
     FileLoader()
     {
-        std::cout << "FileLoader()\n";
+        Logger::log("FileLoader()\n");
     }
 
     std::vector<std::pair<std::vector<int>, std::string>> &getDollarShortcuts()
@@ -106,29 +106,27 @@ public:
             }
         }
 
-        std::cout << "Dollar Shortcuts:\n";
+        Logger::log("Dollar Shortcuts:\n");
         for (const auto &entry : dollar_shortcuts)
         {
             for (auto &num : entry.first)
             {
-                std::cout << num << ", ";
+                Logger::log(std::to_string(num) + ", ");
             }
-            std::cout << " : " << entry.second;
-            std::cout << std::endl;
+            Logger::log(" : " + entry.second + "\n");
         }
-        std::cout << std::endl;
+        Logger::log("\n");
 
-        std::cout << "Colon Shortcuts:\n";
+        Logger::log("Colon Shortcuts:\n");
         for (const auto &entry : colon_shortcuts)
         {
             for (auto &num : entry.first)
             {
-                std::cout << num << ", ";
+                Logger::log(std::to_string(num) + ", ");
             }
-            std::cout << " : " << entry.second;
-            std::cout << std::endl;
+            Logger::log(" : " + entry.second + "\n");
         }
-        std::cout << std::endl;
+        Logger::log("\n");
 
         return 0;
     }
@@ -197,19 +195,19 @@ public:
             }
         }
 
-        std::cout << "Dollar Code:\n";
+        Logger::log("Dollar Code:\n");
         for (const auto &entry : dollar_codes)
         {
-            std::cout << entry.first << " : " << entry.second << std::endl;
+            Logger::log(entry.first + " : " + entry.second + "\n");
         }
-        std::cout << std::endl;
+        Logger::log("\n");
 
-        std::cout << "Colon Code:\n";
+        Logger::log("Colon Code:\n");
         for (const auto &entry : colon_codes)
         {
-            std::cout << entry.first << " : " << entry.second << std::endl;
+            Logger::log(entry.first + " : " + entry.second + "\n");
         }
-        std::cout << std::endl;
+        Logger::log("\n");
 
         return 0;
     }
