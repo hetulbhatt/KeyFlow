@@ -1,4 +1,4 @@
-#include "../include/keyflow/keyhook.h"
+#include "../include/keyflow/keyhook.hpp"
 
 int main(int argc, char* argv[]) {
     Logger::initialize();
