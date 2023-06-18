@@ -1,3 +1,6 @@
+#ifndef KEYHOOK_H
+#define KEYHOOK_H
+
 #include "keystroke_handler.h"
 
 LRESULT CALLBACK keyboard_hook_proc(int nCode, WPARAM wParam, LPARAM lParam);
@@ -84,3 +87,5 @@ LRESULT CALLBACK keyboard_hook_proc(int nCode, WPARAM wParam, LPARAM lParam)
 {
     return KeyHookSingleton::getInstance().hook_keyboard(nCode, wParam, lParam);
 }
+
+#endif // KEYHOOK_H

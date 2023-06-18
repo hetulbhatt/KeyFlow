@@ -1,3 +1,6 @@
+#ifndef KEYSTROKE_HANDLER_H
+#define KEYSTROKE_HANDLER_H
+
 #include "action_performer.h"
 #include "fileloader.h"
 
@@ -22,7 +25,7 @@ public:
     {
         this->sequence = 0;
         memset(logs, 0, TOTAL_KEYS * sizeof(int));
-        printf("KeystrokeHandler() %d \n", loader.getCodeLength());
+        Logger::log("KeystrokeHandler()\n");
     }
 
     FileLoader &getFileLoader()
@@ -52,8 +55,7 @@ public:
             for (int i = 0; i < list.size(); i++)
             {
                 int key = list[i];
-                std::cout << std::endl
-                          << key << " " << logs[key] << " " << i + 1;
+                // Logger::log("Key: " + std::to_string(key) + " LogCount: " + std::to_string(logs[key]) + " CurItr: " + std::to_string(i + 1) + "\n");
                 if (logs[key] != i + 1)
                 {
                     break;
@@ -100,7 +102,7 @@ public:
             event_type == PASTE_EVENT ? loader.getColonCodes() : loader.getDollarCodes();
         if (codes.find(key) != codes.end())
         {
-            std::cout << key << std::endl;
+            Logger::log("Code Event: " + key + " -> " + codes[key]);
             if (event_type == PASTE_EVENT)
             {
                 action_performer.simulate_paste(codes[key]);
@@ -116,11 +118,10 @@ public:
     {
         if (isDown)
         {
-            std::cout << vk_code << std::endl;
+            Logger::log("Key press: " + std::to_string(vk_code) + "\n");
             this->execute_code((char)vk_code);
             if (logs[(int)vk_code] == 0)
             {
-                std::cout << vk_code << std::endl;
                 sequence++;
                 logs[(int)vk_code] = sequence;
                 this->execute_shortcut();
@@ -136,3 +137,5 @@ public:
         }
     }
 };
+
+#endif // KEYSTROKE_HANDLER_H

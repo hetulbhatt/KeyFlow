@@ -1,26 +1,32 @@
 # KeyFlow
-KeyFlow is a powerful C++ project that helps users enhance their productivity by creating customized cheat codes and key combinations. Using this tool, you can assign a cheat code or a key combination (shortcut) to execute a program or flush some predetermined string to the active window on a Windows machine.
+KeyFlow is a powerful C++ project that helps users enhance their productivity by creating customized cheat codes and key combinations. KeyFlow can be used to launch programs, open documents, and emulate keystrokes. Using this tool, you can assign a cheat code or a key combination (shortcut) to execute a program or flush some predetermined string to the active window on a Windows machine.
 
 Features
-- Create custom cheat codes: Assign personalized codes such as "pizza," "alarm," or "goodnight" to print specific strings or execute specific programs instantly.
-- Key combinations: Assign complex key combinations like CTRL+ALT+Q, WINDOWS+Z, or any other combination to execute a desired action.
-- Hotword printing: Set up key combinations like CTRL+ALT+7 to print a predefined phrase, such as "I love CR7," on any active window.
-- Seamless integration: KeyMapper works seamlessly with MS Windows OS, allowing you to utilize cheat codes and key combinations across all applications.
+- Customizable cheat codes: Personalize your experience by assigning unique codes like "pizza," "alarm," or "goodnight" to instantly print specific strings or execute specific programs.
+- Convenient shortcuts: Easily fill in frequently-used file names or other phrases using intuitive shortcuts.
+- Expanded punctuation options: Enhance your typing with access to punctuation marks not available on your keyboard, such as curved quotes (“…”), copyright symbol (©), or currency symbols (₹, €) effortlessly.
+- Quick access to programs, documents, and websites: Launch your favorite programs, open documents, or visit websites with simple keystrokes.
+- Personalized signatures: Add a signature to your emails, message boards by just a few key strokes.
+- Advanced key combinations: Assign complex key combinations like CTRL+ALT+Q, WINDOWS+Z, or any other combination to execute desired actions efficiently.
+- Hotword printing: Define key combinations like CTRL+ALT+M to automate the printing of frequently-used phrases or statements in any active window.
+- Seamless integration: KeyMapper seamlessly integrates with MS Windows, allowing you to use cheat codes and key combinations across all applications.
 
 Getting Started
-To get started with KeyMapper, follow these steps:
-- Clone the KeyMapper repository to your local machine running Windows.
-- Build the project using g++ main.cpp.
-- Run the executable file to launch the KeyMapper application. Ensure that the config files (../config/codes.config and ../config/shortcuts.config) are present at the appropriate locations.
-- If the config files are not found, you can provide a custom path to the config files via command line arguments. For example, main.exe <path-to-shortcuts.config> <path-to-codes.config>.
-- Customize your cheat codes, key combinations, hotwords, and actions using the guide provided below.
-- shortcuts.config:
-  - The left-hand side of the operator should contain the key combination.
-  - Depending on the operator used, the right-hand side can either be a string to be flushed on the active window or a program to be executed.
-  - If the operator is $, the string to the right indicates the path of the executable to be launched when this key combination is pressed.
-  - If the operator is :, the string to the right will be flushed to the active window.
-  - Each operation should not span more than one line.
-  - You can add comments to the file, but they should be on separate lines.
+To start using KeyMapper, follow these simple steps:
+1. Clone the KeyMapper repository to your local machine running Windows.
+2. Build the project by using the command `g++ -std=c++17 main.cpp`.
+3. Run the executable file to launch the KeyMapper application. Make sure that the config files (`../config/codes.config` and `../config/shortcuts.config`) are located in their respective directories.
+4. If the config files are not found in their default locations, you have the option to provide custom paths via command line arguments. For example, use `main.exe <path-to-shortcuts.config> <path-to-codes.config>` to specify the paths.
+5. Personalize your cheat codes, key combinations, hotwords, and associated actions using the guide provided below.
+   
+   For `shortcuts.config`:
+   - The left-hand side of the operator represents the desired key combination.
+   - Depending on the operator used, the right-hand side can either be a string to be printed in the active window or the path to an executable program.
+   - If the operator is `$`, the string on the right indicates the path of the executable to launch when the key combination is pressed.
+   - If the operator is `:`, the string on the right will be printed in the active window.
+   - Each operation should be written on a single line.
+   - Comments can be added to the file, but they should be placed on separate lines.
+
   
     ```
     # This is a comment.
@@ -31,16 +37,15 @@ To get started with KeyMapper, follow these steps:
     # The following program will be launched when the user presses LEFT ALT + A.
     LMENU+A $C:\Program Files\Sublime Text 3\sublime_text.exe
     ```
-  
-
-- codes.config:
-  - You can specify at the beginning of the file how long you want your cheats to be.    
+    
+  For `codes.config`:
+  - Specify the desired length of your cheats at the beginning of the file.
   - The left-hand side of the operator should contain the cheat code.
-  - Depending on the operator used, the right-hand side can either be a string to be flushed on the active window or a program to be executed.
-  - If the operator is $, the string to the right indicates the path of the executable to be launched when this key combination is pressed.
-  - If the operator is :, the string to the right will be flushed to the active window.
-  - Each operation should not span more than one line.
-  - You can add comments to the file, but they should be on separate lines.
+  - Depending on the operator used, the right-hand side can be a string to be printed in the active window or the path to an executable program.
+  - If the operator is $, the string on the right indicates the path of the executable to launch when the cheat code is triggered.
+  - If the operator is :, the string on the right will be printed in the active window.
+  - Each operation should be written on a single line.
+  - It's possible to include comments in the file, but they should be placed on separate lines.
     
     ```
     # All over cheat codes will be of length 5.
@@ -49,9 +54,12 @@ To get started with KeyMapper, follow these steps:
     # will print WORLD on the active window
     HELLO :WORLD
     APPLE :Stay away, Doc!
-    # Typing GTAV5 will launch GTA5.exe, if present.
+    # Typing GTAV5 will launch GTA5.exe, if present, of course.
     GTAV5 $C:\Games\Grand Theft Auto V\GTA5.exe
     ```
+    
+These instructions will help you get started with KeyMapper and enable you to customize its functionalities according to your preferences.
+
   
 Contributing
 - We welcome contributions from the open-source community to enhance KeyFlow's functionality and user experience.
