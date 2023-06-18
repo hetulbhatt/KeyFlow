@@ -1,7 +1,7 @@
 #ifndef FILELOADER_H
 #define FILELOADER_H
 
-#include "helper.h"
+#include "helper.hpp"
 
 #include <fstream>
 #include <sstream>

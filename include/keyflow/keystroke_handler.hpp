@@ -1,8 +1,8 @@
 #ifndef KEYSTROKE_HANDLER_H
 #define KEYSTROKE_HANDLER_H
 
-#include "action_performer.h"
-#include "fileloader.h"
+#include "action_performer.hpp"
+#include "fileloader.hpp"
 
 #define TOTAL_KEYS 256
 #define PASTE_EVENT 1
