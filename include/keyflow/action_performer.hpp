@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 
-#include "logger.h"
+#include "logger.hpp"
 
 class ActionPerformer
 {

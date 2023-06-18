@@ -12,20 +12,6 @@ private:
     static std::ofstream logFile;
 
 public:
-    // static void initialize(const std::string &filePathy)
-    // {
-    //     std::string dirName = "logs";
-    //     std::string fileName = "logs/execution.log";
-
-    //     _mkdir(dirName.c_str());
-
-    //     logFile.open(fileName);
-    //     if (!logFile.is_open())
-    //     {
-    //         std::cerr << "Failed to open the log file for writing!" << std::endl;
-    //     }
-    // }
-
     static void initialize()
     {
         std::string dirName = "logs";
