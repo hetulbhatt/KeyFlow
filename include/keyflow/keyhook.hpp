@@ -1,4 +1,7 @@
-#include "keystroke_handler.h"
+#ifndef KEYHOOK_H
+#define KEYHOOK_H
+
+#include "keystroke_handler.hpp"
 
 LRESULT CALLBACK keyboard_hook_proc(int nCode, WPARAM wParam, LPARAM lParam);
 
