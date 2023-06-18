@@ -1,18 +1,14 @@
-#ifndef ACTION_PERFORMER_H
-#define ACTION_PERFORMER_H
-
 #include <windows.h>
+
 #include <string>
 #include <iostream>
-
-#include "logger.hpp"
 
 class ActionPerformer
 {
 public:
     ActionPerformer()
     {
-        Logger::log("ActionPerformer()\n");
+        std::cout << "ActionPerformer()\n";
     }
 
     void simulate_paste(const std::string &stringToPaste)
@@ -67,7 +63,7 @@ public:
         CloseHandle(pi.hProcess);
         CloseHandle(pi.hThread);
 
-        Logger::log("Process execution completed for: " + path + "\n");
+        std::cout << "Process execution completed for: " << path << std::endl;
     }
 };
 
