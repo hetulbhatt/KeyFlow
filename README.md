@@ -9,13 +9,13 @@ Features
 - Personalized signatures: Add a signature to your emails, message boards by just a few key strokes.
 - Advanced key combinations: Assign complex key combinations like CTRL+ALT+Q, WINDOWS+Z, or any other combination to execute desired actions efficiently.
 - Hotword printing: Define key combinations like CTRL+ALT+M to automate the printing of frequently-used phrases or statements in any active window.
-- Seamless integration: KeyMapper seamlessly integrates with MS Windows, allowing you to use cheat codes and key combinations across all applications.
+- Seamless integration: KeyFlow seamlessly integrates with MS Windows, allowing you to use cheat codes and key combinations across all applications.
 
 Getting Started
-To start using KeyMapper, follow these simple steps:
-1. Clone the KeyMapper repository to your local machine running Windows.
+To start using KeyFlow, follow these simple steps:
+1. Clone the KeyFlow repository to your local machine running Windows.
 2. Build the project by using the command `g++ -std=c++17 main.cpp`.
-3. Run the executable file to launch the KeyMapper application. Make sure that the config files (`../config/codes.config` and `../config/shortcuts.config`) are located in their respective directories.
+3. Run the executable file to launch the KeyFlow application. Make sure that the config files (`../config/codes.config` and `../config/shortcuts.config`) are located in their respective directories.
 4. If the config files are not found in their default locations, you have the option to provide custom paths via command line arguments. For example, use `main.exe <path-to-shortcuts.config> <path-to-codes.config>` to specify the paths.
 5. Personalize your cheat codes, key combinations, hotwords, and associated actions using the guide provided below.
    
@@ -58,7 +58,7 @@ To start using KeyMapper, follow these simple steps:
     GTAV5 $C:\Games\Grand Theft Auto V\GTA5.exe
     ```
     
-These instructions will help you get started with KeyMapper and enable you to customize its functionalities according to your preferences.
+These instructions will help you get started with KeyFlow and enable you to customize its functionalities according to your preferences.
 
   
 Contributing
