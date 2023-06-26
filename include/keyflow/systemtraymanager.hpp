@@ -9,7 +9,7 @@
 class SystemTrayManager
 {
 public:
-    SystemTrayManager(HWND hwnd = NULL,bool hide_to_tray = true);
+    SystemTrayManager(HWND hwnd = NULL, std::string_view tray_icon_name = "KeyFlow",bool hide_to_tray = true);
     ~SystemTrayManager();
     inline void set_tray_icon(HICON icon);
     static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -23,7 +23,7 @@ private:
     HICON m_tray_icon;
     std::mutex m_mutex;
     std::thread m_thread;
-    std::string m_window_title {"KeyFlow"};
+    std::string m_window_title;
     enum MenuID
     {
         ID_SHOWHIDE = 20,
@@ -31,7 +31,8 @@ private:
     };
 };
 
-SystemTrayManager::SystemTrayManager(HWND hwnd, bool hide_to_tray) : m_parent{hwnd}
+SystemTrayManager::SystemTrayManager(HWND hwnd,std::string_view tray_icon_name, bool hide_to_tray) 
+: m_parent{hwnd}, m_window_title{tray_icon_name}
 {
     if(hide_to_tray)
         ShowWindow(hwnd,SW_HIDE);
