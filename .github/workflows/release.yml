@@ -25,8 +25,11 @@ jobs:
       - name: Set up environment
         run: echo "Running on Windows - ${{ matrix.architecture }}"
 
+      - name: Install MSVC
+        uses: microsoft/setup-msbuild@v1
+
       - name: Build
-        run: g++ -static -std=c++17 -I./include -o KeyFlow-${{ matrix.architecture }}.exe src/main.cpp
+        run: cl /EHsc /I.\include /Fe:KeyFlow-${{ matrix.architecture }}.exe src\main.cpp user32.lib
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
