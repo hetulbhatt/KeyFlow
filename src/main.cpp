@@ -8,7 +8,7 @@
 int main(int argc, char* argv[]) {
     Logger::initialize();
     Logger::log("OK!\n\n");
-    SystemTrayManager tray{GetConsoleWindow()};
+    SystemTrayManager tray{GetConsoleWindow(),"KeyFlow",false};
     KeyHook& keyHook = KeyHookSingleton::getInstance();
     FileLoader& fileLoader = keyHook.getKeystrokeHandler().getFileLoader();
     if (argc == 3) {

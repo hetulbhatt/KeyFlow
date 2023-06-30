@@ -36,7 +36,7 @@ SystemTrayManager::SystemTrayManager(HWND hwnd,std::string_view tray_icon_name, 
 {
     if(hide_to_tray)
         ShowWindow(hwnd,SW_HIDE);
-    
+    m_tray_icon = nullptr;
     //Create a separate worker thread for the system tray icon
     m_thread = std::thread{ &SystemTrayManager::message_loop,this};
 }
@@ -53,6 +53,7 @@ void SystemTrayManager::set_tray_icon(HICON icon)
     // Lock in case of multiple threads trying to write.
     std::scoped_lock lck{m_mutex};
     m_tray_icon = icon;
+    SendMessageW(m_hwnd,WM_SETICON,ICON_SMALL,(LPARAM)icon);
 }
 
 bool SystemTrayManager::message_loop()
