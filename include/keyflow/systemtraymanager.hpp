@@ -11,6 +11,10 @@ class SystemTrayManager
 public:
     SystemTrayManager(HWND hwnd = NULL, std::string_view tray_icon_name = "KeyFlow",bool hide_to_tray = true);
     ~SystemTrayManager();
+    SystemTrayManager (const SystemTrayManager&) = delete;
+    SystemTrayManager& operator= (const SystemTrayManager&) = delete;
+    SystemTrayManager (SystemTrayManager&&) = delete;
+    SystemTrayManager& operator= (SystemTrayManager&&) = delete;
     inline void set_tray_icon(HICON icon);
     static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 private:
