@@ -5,17 +5,20 @@
 #include <string>
 #include <iostream>
 #include <mutex>
+#include <string_view>
 
 class SystemTrayManager
 {
 public:
     SystemTrayManager(HWND hwnd = NULL, std::string_view tray_icon_name = "KeyFlow",bool hide_to_tray = true);
-    ~SystemTrayManager();
+    virtual ~SystemTrayManager();
+
     SystemTrayManager (const SystemTrayManager&) = delete;
     SystemTrayManager& operator= (const SystemTrayManager&) = delete;
     SystemTrayManager (SystemTrayManager&&) = delete;
     SystemTrayManager& operator= (SystemTrayManager&&) = delete;
     inline void set_tray_icon(HICON icon);
+    inline void set_tray_name(std::string_view name);
     static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 private:
     LRESULT CALLBACK WndProc_impl(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -57,7 +60,17 @@ void SystemTrayManager::set_tray_icon(HICON icon)
     // Lock in case of multiple threads trying to write.
     std::scoped_lock lck{m_mutex};
     m_tray_icon = icon;
-    SendMessageW(m_hwnd,WM_SETICON,ICON_SMALL,(LPARAM)icon);
+    SendMessage(m_hwnd,WM_SETICON,ICON_SMALL,(LPARAM)icon);
+}
+
+void SystemTrayManager::set_tray_name(std::string_view name)
+{
+    if(m_window_title == name)
+        return;
+       
+    std::scoped_lock lck{m_mutex};
+    m_window_title = name;
+    SetWindowText(m_hwnd,m_window_title.c_str());
 }
 
 bool SystemTrayManager::message_loop()
