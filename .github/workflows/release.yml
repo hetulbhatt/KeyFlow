@@ -35,7 +35,7 @@ jobs:
         run: cl /EHsc KeyFlow\KeyFlow.cpp /link user32.lib /Fe:KeyFlow-${{ matrix.architecture }}.exe
 
       - name: Display structure of downloaded files
-        run: tree .
+        run: tree /f /a ..
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
@@ -60,7 +60,7 @@ jobs:
           path: workspace
 
       - name: Display structure of downloaded files
-        run: tree .
+        run: tree /f /a ..
 
       - name: Determine Alpha Version
         id: determine_alpha_version
