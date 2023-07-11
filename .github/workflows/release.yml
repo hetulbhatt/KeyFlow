@@ -9,16 +9,6 @@ jobs:
   build:
     runs-on: windows-latest
 
-    - name: Install Visual Studio Build Tools
-      run: |
-        choco install visualstudio2019buildtools -y --package-parameters "--includeRecommended --includeOptional"
-        refreshenv
-
-    - name: Set up MSVC environment
-      shell: cmd
-      run: |
-        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
-
     strategy:
       matrix:
         architecture:
@@ -33,6 +23,16 @@ jobs:
 
       - name: Set up environment
         run: echo "Running on Windows - ${{ matrix.architecture }}"
+
+      - name: Install Visual Studio Build Tools
+        run: |
+          choco install visualstudio2019buildtools -y --package-parameters "--includeRecommended --includeOptional"
+          refreshenv
+
+      - name: Set up MSVC environment
+        shell: cmd
+        run: |
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
 
       - name: Build
         run: cl /EHsc KeyFlow\KeyFlow.cpp /link user32.lib /Fe:KeyFlow-${{ matrix.architecture }}.exe
