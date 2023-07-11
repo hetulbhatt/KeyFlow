@@ -25,7 +25,6 @@ jobs:
         run: echo "Running on Windows - ${{ matrix.architecture }}"
 
       - name: Build
-        run: g++ -static -std=c++17 -I./include -o KeyFlow-${{ matrix.architecture }}.exe src/main.cpp
         run: cl /EHsc KeyFlow\KeyFlow.cpp /link user32.lib /Fe:KeyFlow-${{ matrix.architecture }}.exe
 
       - name: Upload artifact
