@@ -86,7 +86,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: workspace/KeyFlow-windows-x86-executable/KeyFlow-x86.exe
+          asset_path: workspace/KeyFlow-windows-x86-executable/KeyFlow.exe
           asset_name: KeyFlow-x86.exe
           asset_content_type: application/octet-stream
 
@@ -96,7 +96,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: workspace/KeyFlow-windows-x64-executable/KeyFlow-x64.exe
+          asset_path: workspace/KeyFlow-windows-x64-executable/KeyFlow.exe
           asset_name: KeyFlow-x64.exe
           asset_content_type: application/octet-stream
 
@@ -106,7 +106,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: workspace/KeyFlow-windows-ARM-executable/KeyFlow-ARM.exe
+          asset_path: workspace/KeyFlow-windows-ARM-executable/KeyFlow.exe
           asset_name: KeyFlow-ARM.exe
           asset_content_type: application/octet-stream
 
@@ -116,6 +116,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: workspace/KeyFlow-windows-ARM64-executable/KeyFlow-ARM64.exe
+          asset_path: workspace/KeyFlow-windows-ARM64-executable/KeyFlow.exe
           asset_name: KeyFlow-ARM64.exe
           asset_content_type: application/octet-stream
