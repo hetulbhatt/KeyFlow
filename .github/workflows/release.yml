@@ -34,6 +34,9 @@ jobs:
       - name: Build
         run: cl /EHsc KeyFlow\KeyFlow.cpp /link user32.lib /Fe:KeyFlow-${{ matrix.architecture }}.exe
 
+      - name: Display structure of downloaded files
+        run: tree .
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
