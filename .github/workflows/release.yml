@@ -9,6 +9,16 @@ jobs:
   build:
     runs-on: windows-latest
 
+    - name: Install Visual Studio Build Tools
+      run: |
+        choco install visualstudio2019buildtools -y --package-parameters "--includeRecommended --includeOptional"
+        refreshenv
+
+    - name: Set up MSVC environment
+      shell: cmd
+      run: |
+        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
+
     strategy:
       matrix:
         architecture:
