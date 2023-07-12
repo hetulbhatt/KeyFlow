@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LOGGER_H
 #define LOGGER_H
 
@@ -12,20 +13,6 @@ private:
     static std::ofstream logFile;
 
 public:
-    // static void initialize(const std::string &filePathy)
-    // {
-    //     std::string dirName = "logs";
-    //     std::string fileName = "logs/execution.log";
-
-    //     _mkdir(dirName.c_str());
-
-    //     logFile.open(fileName);
-    //     if (!logFile.is_open())
-    //     {
-    //         std::cerr << "Failed to open the log file for writing!" << std::endl;
-    //     }
-    // }
-
     static void initialize()
     {
         std::string dirName = "logs";
@@ -53,9 +40,9 @@ public:
         logFile.close();
     }
 
-    static void log(const std::string &message)
+    static void log(const std::string& message)
     {
-        // std::cout << message;
+        std::cout << message;
         logFile << message;
         logFile.flush();
     }

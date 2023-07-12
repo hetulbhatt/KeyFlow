@@ -1,3 +1,4 @@
+#pragma once
 #ifndef HELPER_H
 #define HELPER_H
 
@@ -16,7 +17,7 @@ public:
         Logger::log("Helper()\n");
     }
 
-    static std::string trim(const std::string &str)
+    static std::string trim(const std::string& str)
     {
         size_t first = str.find_first_not_of(' ');
         if (std::string::npos == first)
@@ -27,7 +28,7 @@ public:
         return str.substr(first, (last - first + 1));
     }
 
-    static std::vector<std::string> split_string(const std::string &str, char delimiter)
+    static std::vector<std::string> split_string(const std::string& str, char delimiter)
     {
         std::vector<std::string> tokens;
         std::size_t start = 0;
@@ -47,7 +48,7 @@ public:
     std::vector<int> convert_strings_to_ints(std::vector<std::string> strings)
     {
         std::vector<int> result;
-        for (const std::string &str : strings)
+        for (const std::string& str : strings)
         {
             if (key_to_vkcode.find(str) != key_to_vkcode.end())
             {
@@ -61,7 +62,7 @@ public:
         return result;
     }
 
-    static bool starts_with(const std::string &fullString, const std::string &prefix)
+    static bool starts_with(const std::string& fullString, const std::string& prefix)
     {
         if (fullString.length() < prefix.length())
         {
@@ -248,7 +249,7 @@ public:
             {"ZOOM", 251},
             {"NONAME", 252},
             {"PA1", 253},
-            {"OEM_CLEAR", 254}};
+            {"OEM_CLEAR", 254} };
     }
 };
 
