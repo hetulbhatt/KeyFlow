@@ -3,7 +3,8 @@ name: Create Release
 on:
   push:
     branches:
-      - msvc
+      - main
+      - build
 
 jobs:
   build:
