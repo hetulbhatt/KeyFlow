@@ -1,3 +1,4 @@
+#pragma once
 #ifndef FILELOADER_H
 #define FILELOADER_H
 
@@ -24,22 +25,22 @@ public:
         Logger::log("FileLoader()\n");
     }
 
-    std::vector<std::pair<std::vector<int>, std::string>> &getDollarShortcuts()
+    std::vector<std::pair<std::vector<int>, std::string>>& getDollarShortcuts()
     {
         return this->dollar_shortcuts;
     }
 
-    std::vector<std::pair<std::vector<int>, std::string>> &getColonShortcuts()
+    std::vector<std::pair<std::vector<int>, std::string>>& getColonShortcuts()
     {
         return this->colon_shortcuts;
     }
 
-    std::unordered_map<std::string, std::string> &getDollarCodes()
+    std::unordered_map<std::string, std::string>& getDollarCodes()
     {
         return this->dollar_codes;
     }
 
-    std::unordered_map<std::string, std::string> &getColonCodes()
+    std::unordered_map<std::string, std::string>& getColonCodes()
     {
         return this->colon_codes;
     }
@@ -107,9 +108,9 @@ public:
         }
 
         Logger::log("Dollar Shortcuts:\n");
-        for (const auto &entry : dollar_shortcuts)
+        for (const auto& entry : dollar_shortcuts)
         {
-            for (auto &num : entry.first)
+            for (auto& num : entry.first)
             {
                 Logger::log(std::to_string(num) + ", ");
             }
@@ -118,9 +119,9 @@ public:
         Logger::log("\n");
 
         Logger::log("Colon Shortcuts:\n");
-        for (const auto &entry : colon_shortcuts)
+        for (const auto& entry : colon_shortcuts)
         {
-            for (auto &num : entry.first)
+            for (auto& num : entry.first)
             {
                 Logger::log(std::to_string(num) + ", ");
             }
@@ -151,7 +152,7 @@ public:
                 {
                     code_length = std::stoi(helper.trim(actual_length));
                 }
-                catch (const std::invalid_argument &e)
+                catch (const std::invalid_argument& e)
                 {
                     code_length = DEFAULT_CODE_LENGTH;
                 }
@@ -196,14 +197,14 @@ public:
         }
 
         Logger::log("Dollar Code:\n");
-        for (const auto &entry : dollar_codes)
+        for (const auto& entry : dollar_codes)
         {
             Logger::log(entry.first + " : " + entry.second + "\n");
         }
         Logger::log("\n");
 
         Logger::log("Colon Code:\n");
-        for (const auto &entry : colon_codes)
+        for (const auto& entry : colon_codes)
         {
             Logger::log(entry.first + " : " + entry.second + "\n");
         }

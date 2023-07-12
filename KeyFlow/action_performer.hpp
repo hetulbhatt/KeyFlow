@@ -1,3 +1,4 @@
+#pragma once
 #ifndef ACTION_PERFORMER_H
 #define ACTION_PERFORMER_H
 
@@ -15,7 +16,7 @@ public:
         Logger::log("ActionPerformer()\n");
     }
 
-    void simulate_paste(const std::string &stringToPaste)
+    void simulate_paste(const std::string& stringToPaste)
     {
         // Get the handle of the active window
         HWND activeWindow = GetForegroundWindow();
@@ -24,7 +25,7 @@ public:
         SetForegroundWindow(activeWindow);
 
         // Set up the datastructure
-        INPUT *inputs = new INPUT[stringToPaste.length() * 2];
+        INPUT* inputs = new INPUT[stringToPaste.length() * 2];
         memset(inputs, 0, stringToPaste.length() * 2 * sizeof(INPUT));
 
         for (size_t i = 0; i < stringToPaste.length(); i++)
@@ -45,16 +46,17 @@ public:
         delete[] inputs;
     }
 
-    void execute_program(const std::string &path)
+    void execute_program(const std::string& path)
     {
-        STARTUPINFO si;
-        PROCESS_INFORMATION pi;
+        STARTUPINFOA startupInfo;
+        PROCESS_INFORMATION processInfo;
 
-        ZeroMemory(&si, sizeof(STARTUPINFO));
-        si.cb = sizeof(STARTUPINFO);
-        ZeroMemory(&pi, sizeof(PROCESS_INFORMATION));
+        ZeroMemory(&startupInfo, sizeof(startupInfo));
+        startupInfo.cb = sizeof(startupInfo);
 
-        if (!CreateProcess(NULL, const_cast<char *>(path.c_str()), NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi))
+        ZeroMemory(&processInfo, sizeof(PROCESS_INFORMATION));
+
+        if (!CreateProcessA(NULL, const_cast<char*>(path.c_str()), NULL, NULL, FALSE, 0, NULL, NULL, &startupInfo, &processInfo))
         {
             std::cerr << "Failed to create process: " << GetLastError() << std::endl;
             return;
@@ -64,8 +66,8 @@ public:
         // WaitForSingleObject(pi.hProcess, INFINITE);
 
         // Close process and thread handles
-        CloseHandle(pi.hProcess);
-        CloseHandle(pi.hThread);
+        CloseHandle(processInfo.hProcess);
+        CloseHandle(processInfo.hThread);
 
         Logger::log("Process execution completed for: " + path + "\n");
     }

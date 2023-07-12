@@ -1,3 +1,4 @@
+#pragma once
 #ifndef KEYHOOK_H
 #define KEYHOOK_H
 
@@ -11,7 +12,7 @@ private:
     KeystrokeHandler keystroke_handler;
 
 public:
-    KeystrokeHandler &getKeystrokeHandler()
+    KeystrokeHandler& getKeystrokeHandler()
     {
         return this->keystroke_handler;
     }
@@ -42,14 +43,14 @@ public:
     {
         if (nCode >= 0 && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
         {
-            KBDLLHOOKSTRUCT *hook_struct = (KBDLLHOOKSTRUCT *)lParam;
+            KBDLLHOOKSTRUCT* hook_struct = (KBDLLHOOKSTRUCT*)lParam;
             DWORD vk_code = hook_struct->vkCode;
 
             this->keystroke_handler.handle_keystroke_event(vk_code, 1);
         }
         else if (nCode >= 0 && (wParam == WM_KEYUP || wParam == WM_SYSKEYUP))
         {
-            KBDLLHOOKSTRUCT *hook_struct = (KBDLLHOOKSTRUCT *)lParam;
+            KBDLLHOOKSTRUCT* hook_struct = (KBDLLHOOKSTRUCT*)lParam;
             DWORD vk_code = hook_struct->vkCode;
             this->keystroke_handler.handle_keystroke_event(vk_code, 0);
         }
@@ -60,7 +61,7 @@ public:
 class KeyHookSingleton
 {
 private:
-    KeyHook *hook = nullptr;
+    KeyHook* hook = nullptr;
 
     KeyHookSingleton()
     {
@@ -68,14 +69,14 @@ private:
     }
 
 public:
-    static KeyHook &getInstance()
+    static KeyHook& getInstance()
     {
         static KeyHookSingleton instance;
         return *(instance.hook);
     }
 
-    KeyHookSingleton(const KeyHookSingleton &) = delete;
-    KeyHookSingleton &operator=(const KeyHookSingleton &) = delete;
+    KeyHookSingleton(const KeyHookSingleton&) = delete;
+    KeyHookSingleton& operator=(const KeyHookSingleton&) = delete;
 
     ~KeyHookSingleton()
     {

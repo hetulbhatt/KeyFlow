@@ -1,3 +1,4 @@
+#pragma once
 #ifndef KEYSTROKE_HANDLER_H
 #define KEYSTROKE_HANDLER_H
 
@@ -28,7 +29,7 @@ public:
         Logger::log("KeystrokeHandler()\n");
     }
 
-    FileLoader &getFileLoader()
+    FileLoader& getFileLoader()
     {
         return this->loader;
     }
@@ -46,10 +47,10 @@ public:
 
     void execute_shortcut(int event_type)
     {
-        std::vector<std::pair<std::vector<int>, std::string>> &shortcuts =
+        std::vector<std::pair<std::vector<int>, std::string>>& shortcuts =
             event_type == PASTE_EVENT ? loader.getColonShortcuts() : loader.getDollarShortcuts();
 
-        for (const auto &entry : shortcuts)
+        for (const auto& entry : shortcuts)
         {
             std::vector<int> list = entry.first;
             for (int i = 0; i < list.size(); i++)
@@ -98,7 +99,7 @@ public:
 
     void execute_code(int event_type, std::string key)
     {
-        std::unordered_map<std::string, std::string> &codes =
+        std::unordered_map<std::string, std::string>& codes =
             event_type == PASTE_EVENT ? loader.getColonCodes() : loader.getDollarCodes();
         if (codes.find(key) != codes.end())
         {
