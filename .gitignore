@@ -1,4 +1,5 @@
-.vscode
-build/*
-src/*
-!src/main.cpp
+.vs
+x64
+KeyFlow/KeyFlow.vcxproj.user
+KeyFlow/x64
+KeyFlow/logs
