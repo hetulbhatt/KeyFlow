@@ -25,17 +25,24 @@ jobs:
       - name: Set up environment
         run: echo "Running on Windows - ${{ matrix.architecture }}"
 
-      - name: Install MSVC
-        uses: microsoft/setup-msbuild@v1
+      - uses: ilammy/msvc-dev-cmd@v1
+
+      # - name: Set up MSVC environment
+      #   shell: cmd
+      #   run: |
+      #     call "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
 
       - name: Build
-        run: cl /EHsc /I.\include /Fe:KeyFlow-${{ matrix.architecture }}.exe src\main.cpp user32.lib
+        run: cl /EHsc KeyFlow\KeyFlow.cpp /link user32.lib /Fe:KeyFlow.exe
+
+      - name: Display structure of downloaded files
+        run: tree /f /a ..
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: KeyFlow-windows-${{ matrix.architecture }}-executable
-          path: KeyFlow-${{ matrix.architecture }}.exe
+          path: KeyFlow.exe
 
   create_release:
     needs: build
@@ -54,12 +61,12 @@ jobs:
           path: workspace
 
       - name: Display structure of downloaded files
-        run: tree .
+        run: tree /f /a ..
 
       - name: Determine Alpha Version
         id: determine_alpha_version
         run: |
-          echo "::set-output name=ALPHA_VERSION::alpha.$(date +%Y%m%d).${{ github.run_number }}"
+          echo "::set-output name=ALPHA_VERSION::alpha.$(date +%Y%m%d).${{ github.run_number }}.msvc"
 
       - name: Create Release
         id: create_release
@@ -80,7 +87,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: workspace/KeyFlow-windows-x86-executable/KeyFlow-x86.exe
+          asset_path: workspace/KeyFlow-windows-x86-executable/KeyFlow.exe
           asset_name: KeyFlow-x86.exe
           asset_content_type: application/octet-stream
 
@@ -90,7 +97,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: workspace/KeyFlow-windows-x64-executable/KeyFlow-x64.exe
+          asset_path: workspace/KeyFlow-windows-x64-executable/KeyFlow.exe
           asset_name: KeyFlow-x64.exe
           asset_content_type: application/octet-stream
 
@@ -100,7 +107,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: workspace/KeyFlow-windows-ARM-executable/KeyFlow-ARM.exe
+          asset_path: workspace/KeyFlow-windows-ARM-executable/KeyFlow.exe
           asset_name: KeyFlow-ARM.exe
           asset_content_type: application/octet-stream
 
@@ -110,6 +117,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: workspace/KeyFlow-windows-ARM64-executable/KeyFlow-ARM64.exe
+          asset_path: workspace/KeyFlow-windows-ARM64-executable/KeyFlow.exe
           asset_name: KeyFlow-ARM64.exe
           asset_content_type: application/octet-stream
