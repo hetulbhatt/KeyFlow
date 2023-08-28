@@ -13,12 +13,14 @@ Features
 
 Getting Started
 To start using KeyFlow, follow these simple steps:
-1. Clone the KeyFlow repository to your local machine running Windows.
-2. Build the project by using the command `g++ -std=c++17 main.cpp`.
-3. Run the executable file to launch the KeyFlow application. Make sure that the config files (`../config/codes.config` and `../config/shortcuts.config`) are located in their respective directories.
-4. If the config files are not found in their default locations, you have the option to provide custom paths via command line arguments. For example, use `main.exe <path-to-shortcuts.config> <path-to-codes.config>` to specify the paths.
-5. Personalize your cheat codes, key combinations, hotwords, and associated actions using the guide provided below.
-   
+1. Clone the KeyFlow repository to your local machine.
+2. Build the project using Visual Studio 2022 IDE and the MSVC compiler:
+  - Open the KeyFlow solution (.sln) file in Visual Studio 2022.
+  - Build the solution using the IDE's build commands.
+3. Run the executable file to launch the KeyFlow application. Ensure that the configuration files (../config/codes.config and ../config/shortcuts.config) are located in their respective directories.
+4. In case the configuration files are not found in their default locations, you can provide custom paths through command line arguments. Right click on KeyFlow project in the solution explorer and click "Properties". Specify command line arguments in "Configuration Properties > Debugging > Command Arguments".
+5. Customize your cheat codes, key combinations, hotwords, and associated actions using the provided guide below.   
+
    For `shortcuts.config`:
    - The left-hand side of the operator represents the desired key combination. To understand more about nomanclature of keys, refer to the table at the end.
    - Depending on the operator used, the right-hand side can either be a string to be printed in the active window or the path to an executable program.
