@@ -13,6 +13,7 @@ class FileLoader
 {
 private:
 	Helper helper;
+	// vectors of pairs. Each pair consists of a vector of integers and a string.
 	std::vector<std::pair<std::vector<int>, std::string>> dollar_shortcuts;
 	std::vector<std::pair<std::vector<int>, std::string>> colon_shortcuts;
 	std::unordered_map<std::string, std::string> dollar_codes;
@@ -24,7 +25,7 @@ public:
 	{
 		Logger::log("FileLoader()\n");
 	}
-
+	//getters
 	std::vector<std::pair<std::vector<int>, std::string>>& getDollarShortcuts()
 	{
 		return this->dollar_shortcuts;
@@ -50,7 +51,7 @@ public:
 		return code_length;
 	}
 
-	void loadFromFiles() {
+	void loadFromFiles() {// load data from files
 		load_shortcuts("../config/shortcuts.config");
 		load_codes("../config/codes.config");
 	}
@@ -137,7 +138,7 @@ public:
 		std::ifstream file(filePath);
 		std::string line;
 
-		while (std::getline(file, line))
+		while (std::getline(file, line))//It then reads each line of the file using std::getline and stores it in the line variable.
 		{
 			if (line.empty() || line[0] == '#')
 				continue;

@@ -22,6 +22,8 @@ private:
 	std::unordered_map<std::string, int> key_to_vkcode;
 
 public:
+	//nstructor that initializes the sequence variable to 0 and sets all elements of the logs array to 0 using memset.
+	//It also logs a message using the Logger class.
 	KeystrokeHandler()
 	{
 		this->sequence = 0;
@@ -33,7 +35,7 @@ public:
 	{
 		return this->loader;
 	}
-
+	//akes an integer size as a parameter and resizes the buffer vector accordingly.
 	void resizeBuffer(int size)
 	{
 		this->buffer.resize(size);
@@ -96,7 +98,7 @@ public:
 		this->execute_code(PASTE_EVENT, key);
 		this->execute_code(EXECUTE_EVENT, key);
 	}
-
+	//execute a code based on the keystrokes received
 	void execute_code(int event_type, std::string key)
 	{
 		std::unordered_map<std::string, std::string>& codes =
@@ -114,6 +116,8 @@ public:
 			}
 		}
 	}
+	//handle keystroke events.
+	//- It takes a DWORD parameter vk_code representing the virtual key code of the pressed key and an int parameter isDown indicating whether the key is pressed or released.
 
 	void handle_keystroke_event(DWORD vk_code, int isDown)
 	{
