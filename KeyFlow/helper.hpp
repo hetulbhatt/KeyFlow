@@ -10,13 +10,13 @@ class Helper
 {
 public:
 	std::unordered_map<std::string, int> key_to_vkcode;
-	//constrctor
+	// Constrctor
 	Helper()
 	{
-		init_key_to_vkcode();//intialized the unordered_map
+		init_key_to_vkcode();// Intialized the unordered_map
 		Logger::log("Helper()\n");
 	}
-	//removes the removes leading and trailing spaces from str
+	// Removes the removes leading and trailing spaces from str.
 	static std::string trim(const std::string& str)
 	{
 		size_t first = str.find_first_not_of(' ');
@@ -27,8 +27,8 @@ public:
 		size_t last = str.find_last_not_of(' ');
 		return str.substr(first, (last - first + 1));
 	}
-	// takes a std::string and a delimiter character as input and splits the string into multiple substrings based on the delimiter. 
-	//It uses a std::vector<std::string> to store the resulting substrings
+	// Takes a std::string and a delimiter character as input and splits the string into multiple substrings based on the delimiter. 
+	// It uses a std::vector<std::string> to store the resulting substrings
 	static std::vector<std::string> split_string(const std::string& str, char delimiter)
 	{
 		std::vector<std::string> tokens;
@@ -45,7 +45,7 @@ public:
 		tokens.push_back(str.substr(start));
 		return tokens;
 	}
-	//This function takes a vector of strings as input and converts each string to an integer value based on the key_to_vkcode map
+	// This function takes a vector of strings as input and converts each string to an integer value based on the key_to_vkcode map
 	std::vector<int> convert_strings_to_ints(std::vector<std::string> strings)
 	{
 		std::vector<int> result;
@@ -62,7 +62,7 @@ public:
 		}
 		return result;
 	}
-	//checks if fullString starts with prefix
+	// Checks if fullString starts with prefix
 	static bool starts_with(const std::string& fullString, const std::string& prefix)
 	{
 		if (fullString.length() < prefix.length())
@@ -71,9 +71,9 @@ public:
 		}
 		return fullString.substr(0, prefix.length()) == prefix;
 	}
-	//nitializes the key_to_vkcode unordered map using an initializer list. 
-	//The initializer list contains a series of key-value pairs enclosed in curly braces {}.
-	//Each key-value pair corresponds to a key (represented as a std::string) and a value (represented as an int) according to the table in the Readmy
+	// Initializes the key_to_vkcode unordered map using an initializer list. 
+	// The initializer list contains a series of key-value pairs enclosed in curly braces {}.
+	// Each key-value pair corresponds to a key (represented as a std::string) and a value (represented as an int) according to the table in the Readmy.
 	void init_key_to_vkcode()
 	{
 		key_to_vkcode = {
