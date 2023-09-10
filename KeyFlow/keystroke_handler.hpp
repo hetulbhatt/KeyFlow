@@ -98,7 +98,7 @@ public:
 		this->execute_code(PASTE_EVENT, key);
 		this->execute_code(EXECUTE_EVENT, key);
 	}
-	//execute a code based on the keystrokes received
+	// Execute a code based on the keystrokes received
 	void execute_code(int event_type, std::string key)
 	{
 		std::unordered_map<std::string, std::string>& codes =
@@ -117,7 +117,7 @@ public:
 		}
 	}
 	// Handle keystroke events.
-	//- It takes a DWORD parameter vk_code representing the virtual key code of the pressed key and an int parameter isDown indicating whether the key is pressed or released.
+	// It takes a DWORD parameter vk_code representing the virtual key code of the pressed key and an int parameter isDown indicating whether the key is pressed or released.
 
 	void handle_keystroke_event(DWORD vk_code, int isDown)
 	{
