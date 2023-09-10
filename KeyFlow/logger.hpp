@@ -1,18 +1,19 @@
 #pragma once
 #ifndef LOGGER_H
 #define LOGGER_H
-
-#include <direct.h>
+#include <direct.h>// Provides access to functions for working with directories
 #include <iostream>
 #include <fstream>
-#include <filesystem>
+#include <filesystem>// Provides access to file and directory operations
 
 class Logger
 {
 private:
-	static std::ofstream logFile;
+	static std::ofstream logFile;// This member variable will be used to write log messages to a file
 
 public:
+	// This static member function is used to initialize the logger. It creates a directory named "logs" (if it doesn't already exist) using the _mkdir() function from <direct.h>.
+	// It then opens the file "logs/execution.log" for writing using the open() function of logFile.
 	static void initialize()
 	{
 		std::string dirName = "logs";
@@ -35,7 +36,7 @@ public:
 		}
 	}
 
-	static void shutdown()
+	static void shutdown()//It closes the logFile 
 	{
 		logFile.close();
 	}
