@@ -139,6 +139,7 @@
     <ClInclude Include="keystroke_handler.hpp" />
     <ClInclude Include="logger.hpp" />
     <ClInclude Include="systemtraymanager.hpp" />
+    <ClInclude Include="Window.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

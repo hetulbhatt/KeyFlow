@@ -20,7 +20,7 @@ public:
 	// Rsponsible for setting up the keyboard hook using the SetWindowsHookEx() function. 
 	// It passes WH_KEYBOARD_LL as the hook type, indicating a low-level keyboard hook. 
 	// The keyboard_hook_proc function is passed as the hook procedure. The NULL parameter represents the module handle, and 0 represents the thread identifier. If the hook setup is successful, it returns 0; otherwise, it returns 1.
-	int setup_hook()
+	static int setup_hook()
 	{
 		HHOOK hook = SetWindowsHookEx(WH_KEYBOARD_LL, keyboard_hook_proc, NULL, 0);
 
