@@ -2,6 +2,7 @@
 #ifndef ACTION_PERFORMER_H
 #define ACTION_PERFORMER_H
 
+#include "Window.hpp"
 #include <windows.h>
 #include <string>
 #include <iostream>
@@ -59,6 +60,7 @@ public:
 		if (!CreateProcessA(NULL, const_cast<char*>(path.c_str()), NULL, NULL, FALSE, 0, NULL, NULL, &startupInfo, &processInfo))
 		{
 			std::cerr << "Failed to create process: " << GetLastError() << std::endl;
+			Window::GetWindowSingleton().CleanAndWrite("Failed to create process: " + GetLastError());
 			return;
 		}
 
@@ -70,6 +72,7 @@ public:
 		CloseHandle(processInfo.hThread);
 
 		Logger::log("Process execution completed for: " + path + "\n");
+		Window::GetWindowSingleton().CleanAndWrite("Process execution completed for: " + path + "\n");
 	}
 };
 

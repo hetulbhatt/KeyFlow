@@ -106,6 +106,8 @@ public:
 		if (codes.find(key) != codes.end())
 		{
 			Logger::log("Code Event: " + key + " -> " + codes[key]);
+			Window::GetWindowSingleton().CleanAndWrite("Code Event: " + key + " -> " + codes[key]);
+			
 			if (event_type == PASTE_EVENT)
 			{
 				action_performer.simulate_paste(codes[key]);
@@ -124,6 +126,7 @@ public:
 		if (isDown)
 		{
 			Logger::log("Key press: " + std::to_string(vk_code) + "\n");
+			Window::GetWindowSingleton().CleanAndWrite("Key press: " + std::to_string(vk_code) + "\n");
 			this->execute_code((char)vk_code);
 			if (logs[(int)vk_code] == 0)
 			{
